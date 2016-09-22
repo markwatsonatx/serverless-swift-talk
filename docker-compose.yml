@@ -1,0 +1,19 @@
+version: '2'
+services:
+  db:
+    image: couchdb:latest    
+    ports:
+      - "35984:5984"
+  web:
+    image: markwatsonatx/swift-kitura-sample:0.15
+    volumes:
+      - ./testing:/usr/src
+      - ./functions:/usr/functions
+    environment:
+      - FUNCTIONS_HOME=/usr/functions
+      - KITURA_SAMPLE_HOME=/usr/src
+    entrypoint: /usr/src/startup.sh
+    ports:
+      - "38090:8090"
+    depends_on:
+      - db

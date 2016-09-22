@@ -1,0 +1,2 @@
+public class FunctionRunner {
+   class func run(function: String, args: [String:Any]) -> [String:Any] {
