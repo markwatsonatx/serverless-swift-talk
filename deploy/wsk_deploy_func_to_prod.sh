@@ -6,9 +6,12 @@ func_file_name=$3
 wsk_cmd=$(echo 'wsk action '$action' --kind swift:3')
 while read -r line; do
 	param_name=$(echo $line | sed 's/^.*\:[ ]*\(.*\)$/\1/')
-	param_value=$(cat ../params/default_params_prod.txt | sed -n 's/^'$param_name'[^=]*=[ ]*\(.*\)$/\1/p')
-	param_value=$(echo $param_value | sed "s/\'/\"/g")
-	wsk_cmd=$(echo $wsk_cmd" --param "$param_name "'"$param_value"'")
+	if [ -n "$param_name" ]
+	then
+		param_value=$(cat ../params/default_params_prod.txt | sed -n 's/^'$param_name'[^=]*=[ ]*\(.*\)$/\1/p')
+		param_value=$(echo $param_value | sed "s/\'/\"/g")
+		wsk_cmd=$(echo $wsk_cmd" --param "$param_name "'"$param_value"'")
+	fi
 done <<< "$(grep -E '\$DefaultParam\:[ ]*.*' $func_file_name)"
 # create temp file for upload
 mkdir -p ./release/prod

@@ -7,7 +7,7 @@ func_tmp_file_name=$(echo './__embed__'$func_rel_file_name'__.swift')
 rm -rf $func_tmp_file_name
 cp $func_src_file_name $func_tmp_file_name
 # append embedded files
-while read -r line; do
+grep -E '\$EmbedFile\:[ ]*.*' $func_tmp_file_name | while read -r line; do
 	embed_src_file_name=$(echo $line | sed 's/^.*\:[ ]*\(.*\)$/\1/')
 	embed_src_file_name=$(echo '../lib/'$embed_src_file_name)
 	embed_rel_file_name=$(echo $embed_src_file_name | sed 's/.*\///')
@@ -22,6 +22,6 @@ while read -r line; do
 	done
 	cat $embed_tmp_file_name >> $func_tmp_file_name
 	rm -rf $embed_tmp_file_name
-done <<< "$(grep -E '\$EmbedFile\:[ ]*.*' $func_tmp_file_name)"
+done
 cat $func_tmp_file_name > $func_dest_file_name
 rm -rf $func_tmp_file_name
