@@ -173,7 +173,6 @@
 				TargetAttributes = {
 					D77B82141D9D93B000A068DF = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = Q8XU6EQEST;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -424,7 +423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ServerlessSwiftTalkClient/ServerlessSwiftTalkClient.entitlements;
-				DEVELOPMENT_TEAM = Q8XU6EQEST;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ServerlessSwiftTalkClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cdslabs.ServerlessSwiftTalkClient;
@@ -439,7 +438,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ServerlessSwiftTalkClient/ServerlessSwiftTalkClient.entitlements;
-				DEVELOPMENT_TEAM = Q8XU6EQEST;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ServerlessSwiftTalkClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.cdslabs.ServerlessSwiftTalkClient;
