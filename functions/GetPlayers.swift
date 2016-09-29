@@ -3,6 +3,8 @@ import Foundation
 import KituraNet
 import SwiftyJSON
 
+// $DefaultParam:couchdb
+
 func main(args: [String:Any]) -> [String:Any] {
     let couchdbConfig = args["couchdb"] as! [String:Any]
     let couchdbClient = CouchDBClient(
@@ -27,7 +29,6 @@ func main(args: [String:Any]) -> [String:Any] {
     return response!
 }
 
-// $DefaultParam:couchdb
-// $EmbedFile:couchdb/CouchDBCreateDbResponse.swift
-// $EmbedFile:couchdb/CouchDBSaveDocResponse.swift
-// $EmbedFile:couchdb/CouchDBClient.swift
+{% include "./lib/couchdb/CouchDBCreateDbResponse.swift" %}
+{% include "./lib/couchdb/CouchDBSaveDocResponse.swift" %}
+{% include "./lib/couchdb/CouchDBClient.swift" %}

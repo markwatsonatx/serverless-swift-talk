@@ -5,16 +5,16 @@ services:
     ports:
       - "35984:5984"
   web:
-    image: markwatsonatx/swift-kitura-sample:0.15
+    build:
+      context: ./
+      dockerfile: ./docker-compose.web.Dockerfile
     volumes:
       - ./functions:/usr/sst_functions
-      - ./lib:/usr/sst_lib
       - ./params:/usr/sst_params
       - ./test:/usr/src
     environment:
       - KITURA_SAMPLE_HOME=/usr/src
       - SST_FUNCTIONS_HOME=/usr/sst_functions
-      - SST_LIB_HOME=/usr/sst_lib
       - SST_PARAMS_HOME=/usr/sst_params
     entrypoint: /usr/src/startup.sh
     ports:
