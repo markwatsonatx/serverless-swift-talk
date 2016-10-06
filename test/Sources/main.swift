@@ -33,7 +33,7 @@ let router = Router()
 * such as authentication and other routing
 */
 class BasicAuthMiddleware: RouterMiddleware {
-    func handle(request: RouterRequest, response: RouterResponse, next: () -> Void) {
+    func handle(request: RouterRequest, response: RouterResponse, next: @escaping () -> Void) {
         let authString = request.headers["Authorization"]
         print("Authorization: \(authString)")
         // Check authorization string in database to approve the request if fail
@@ -48,7 +48,7 @@ router.all(middleware: BasicAuthMiddleware())
 router.all("/static", middleware: StaticFileServer())
 
 router.post("/function/:function") { request, response, next in
-    let f = request.params["function"]!
+    let f = request.parameters["function"]!
     do {
 		let funcReqStr = try request.readString()
 		let funcReqJsonObj = JSON.parse(string: funcReqStr!).dictionaryObject
@@ -83,13 +83,8 @@ router.error { request, response, next in
 router.all { request, response, next in
     if  response.statusCode == .unknown  {
         // Remove this wrapping if statement, if you want to handle requests to / as well
-        if  request.originalUrl != "/"  &&  request.originalUrl != ""  {
-            do {
-                try response.status(.notFound).send("Route not found in Sample application!").end()
-            }
-            catch {
-                print("Failed to send response \(error)")
-            }
+        if  request.originalURL != "/"  &&  request.originalURL != ""  {
+            try response.status(.notFound).send("Route not found in Sample application!").end()
         }
     }
     next()

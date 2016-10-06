@@ -16,7 +16,7 @@ func main(args: [String:Any]) -> [String:Any] {
     )
     let db = couchdbConfig["db"] as! String
     var response : [String:Any]?
-    dispatch_sync(dispatch_get_global_queue(0, 0)) {
+    DispatchQueue.global().sync {
         couchdbClient.createDb(db: db) { (couchResponse, error) in
             if (error != nil) {
                 response = [ "error": "Error creating database."]
