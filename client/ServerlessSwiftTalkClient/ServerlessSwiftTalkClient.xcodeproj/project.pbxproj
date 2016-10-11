@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		692240310B014EDDBE5053B6 /* Pods_ServerlessSwiftTalkClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7C323EAF6ECD5E79692104 /* Pods_ServerlessSwiftTalkClient.framework */; };
 		D77B82191D9D93B000A068DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77B82181D9D93B000A068DF /* AppDelegate.swift */; };
-		D77B821B1D9D93B000A068DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77B821A1D9D93B000A068DF /* ViewController.swift */; };
+		D77B821B1D9D93B000A068DF /* HelloWorldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77B821A1D9D93B000A068DF /* HelloWorldViewController.swift */; };
 		D77B821E1D9D93B000A068DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D77B821C1D9D93B000A068DF /* Main.storyboard */; };
 		D77B82201D9D93B000A068DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D77B821F1D9D93B000A068DF /* Assets.xcassets */; };
 		D77B82231D9D93B000A068DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D77B82211D9D93B000A068DF /* LaunchScreen.storyboard */; };
@@ -33,7 +33,7 @@
 		D752672E1D9DA32B00C5CDB3 /* ServerlessSwiftTalkClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServerlessSwiftTalkClient.entitlements; sourceTree = "<group>"; };
 		D77B82151D9D93B000A068DF /* ServerlessSwiftTalkClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServerlessSwiftTalkClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D77B82181D9D93B000A068DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D77B821A1D9D93B000A068DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D77B821A1D9D93B000A068DF /* HelloWorldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloWorldViewController.swift; sourceTree = "<group>"; };
 		D77B821D1D9D93B000A068DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D77B821F1D9D93B000A068DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D77B82221D9D93B000A068DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 				D752672E1D9DA32B00C5CDB3 /* ServerlessSwiftTalkClient.entitlements */,
 				D77B82461D9D9D7800A068DF /* AppState.swift */,
 				D77B82181D9D93B000A068DF /* AppDelegate.swift */,
-				D77B821A1D9D93B000A068DF /* ViewController.swift */,
+				D77B821A1D9D93B000A068DF /* HelloWorldViewController.swift */,
 				D77B821C1D9D93B000A068DF /* Main.storyboard */,
 				D77B821F1D9D93B000A068DF /* Assets.xcassets */,
 				D77B82211D9D93B000A068DF /* LaunchScreen.storyboard */,
@@ -281,7 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D77B821B1D9D93B000A068DF /* ViewController.swift in Sources */,
+				D77B821B1D9D93B000A068DF /* HelloWorldViewController.swift in Sources */,
 				D77B82191D9D93B000A068DF /* AppDelegate.swift in Sources */,
 				D77B82471D9D9D7800A068DF /* AppState.swift in Sources */,
 			);

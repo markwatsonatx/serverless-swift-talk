@@ -39,6 +39,20 @@ public class CouchDBClient {
     }
 
     // MARK: db
+
+    public func createDbIfNotExists(db: String, completionHandler: @escaping (CouchDBCreateDbResponse?, Swift.Error?) -> Void) {
+        let options = self.createHeadRequest(db: db, path: "")
+        print("HEAD /.")
+        let req = HTTP.request(options) { response in
+            if (response != nil && response!.statusCode == HTTPStatusCode.OK) {
+                completionHandler(CouchDBCreateDbResponse(ok:true), nil)
+            }
+            else {
+                self.createDb(db:db, completionHandler:completionHandler)
+            }
+        }
+        req.end()
+    }
     
     public func createDb(db: String, completionHandler: @escaping (CouchDBCreateDbResponse?, Swift.Error?) -> Void) {
         let options = self.createPutRequest(db: db, path: "")
@@ -85,6 +99,41 @@ public class CouchDBClient {
             req.end()
          }
          catch {
+            completionHandler(nil, error)
+        }
+    }
+
+    // MARK: find
+
+    public func findDocs(db: String, query: [String:Any], completionHandler: @escaping ([Any]?, Swift.Error?) -> Void) {
+        do {
+            let body = try JSONSerialization.data(withJSONObject: query, options: [])
+            let options = self.createPostRequest(db: db, path: "_find")
+            print("POST _find.")
+            let req = HTTP.request(options) { response in
+                do {
+                    print("Received response for _find.")
+                    let dict: [String:Any]? = try self.parseResponse(response: response, error: nil)
+                    if (dict != nil) {
+                        if let docs = dict!["docs"] as? [[String:Any]] {
+                            completionHandler(docs, nil)
+                        }
+                        else {
+                            completionHandler(nil, nil)
+                        }
+                    }
+                    else {
+                        completionHandler(nil, nil)
+                    }
+                }
+                catch {
+                    completionHandler(nil, error)
+                }
+            }
+            req.write(from: body)
+            req.end()
+        }
+        catch {
             completionHandler(nil, error)
         }
     }
@@ -284,6 +333,12 @@ public class CouchDBClient {
     func createPutRequest(db: String, path: String) -> [ClientRequest.Options] {
         var options: [ClientRequest.Options] = self.createRequest(db: db, path: path)
         options.append(.method("PUT"))
+        return options
+    }
+
+    func createHeadRequest(db: String, path: String) -> [ClientRequest.Options] {
+        var options: [ClientRequest.Options] = self.createRequest(db: db, path: path)
+        options.append(.method("HEAD"))
         return options
     }
 

@@ -6,6 +6,10 @@ public class CouchDBCreateDbResponse {
     
     var ok: Bool
     
+    public init(ok: Bool) {
+        self.ok = ok
+    }
+    
     public init(dict:[String:Any]) {
         self.ok = dict["ok"] as! Bool
     }

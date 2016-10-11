@@ -1,1 +1,2 @@
-couchdb={"host":"db", "scheme":"http", "port":5984, "db":"players"}
+jwt_secret="$uper$ecret"
+couchdb={"host":"db", "scheme":"http", "port":5984}

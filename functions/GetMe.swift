@@ -9,30 +9,33 @@ import SwiftyJSON
 func main(args: [String:Any]) -> [String:Any] {
     let db = "users"
     let couchdbClient = getCouchdbClient(args: args)
-    let emailAddress = args["email_address"]
-    let password = args["password"]
-    if (emailAddress != nil && password != nil) {
+    let jwt = args["jwt"] as? String
+    if (jwt != nil) {
+        let jwtSecret = args["jwt_secret"] as! String
         var response : [String:Any]?
-        DispatchQueue.global().sync {
-            let selector = ["email_address" : emailAddress, "password": password]
-            let query = ["selector" : selector]
-            print("QUERY = \(query)")
-            couchdbClient.findDocs(db: db, query: query) { (docs, error) in
-                if (error != nil || docs == nil || docs?.count != 1) {
-                    response = ["error": "Invalid email address or password.", "docs": docs]
-                }
-                else {
-                    let user = docs![0] as! [String:Any]
-                    let jwtSecret = args["jwt_secret"] as! String
-                    let jwt = JWT().encode(["id": user["_id"]], algorithm: .hs256(jwtSecret.data(using: .utf8)!))
-                    response = ["user": user, "jwt": jwt]
+        do {
+            let payload = try Decode().decode(jwt!, algorithm: .hs256(jwtSecret.data(using: .utf8)!))
+            let userId = payload["id"]
+            DispatchQueue.global().sync {
+                let selector = ["_id": userId]
+                let query = ["selector": selector]
+                couchdbClient.findDocs(db: db, query: query) { (docs, error) in
+                    if (error != nil || docs == nil || docs?.count != 1) {
+                        response = ["error" : "User not found."]
+                    }
+                    else {
+                        response = docs![0] as? [String:Any]
+                    }
                 }
             }
+        }
+        catch {
+            response = ["error" : "Invalid token."]
         }
         return response!
     }
     else {
-        return ["error": "Invalid email address or password."]
+        return ["error" : "Invalid token."]
     }
 }
 
