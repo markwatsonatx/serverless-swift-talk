@@ -9,7 +9,7 @@ absPath() {
     fi
 }
 
-./wsk_set_env_prod.sh
+./wsk_set_env_prod.sh	
 action=$1
 func_name=$2
 func_file_name=$3
