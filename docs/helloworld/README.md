@@ -3,15 +3,17 @@
 ## Prerequisites
 
 1. Create a Bluemix account
+
 2. Download the OpenWhisk CLI
-    a. Log in to Bluemix and go [here](https://new-console.ng.bluemix.net/openwhisk/cli)
-    b. Follow the instructions to Download the CLI 
-    c. Copy the contents of _Set your OpenWhisk Namespace and Authorization Key_. You will need this in the next step.
+    1. Log in to Bluemix and go [here](https://new-console.ng.bluemix.net/openwhisk/cli)
+    2. Follow the instructions to Download the CLI 
+    3. Copy the contents of _Set your OpenWhisk Namespace and Authorization Key_. You will need this in the next step.
+
 3. Clone this repo and configure OpenWhisk
-    a. If you haven't already done so clone this repo
-	b. Create a file in _serverless-swift-talk/deploy_ called _wsk_set_env_prod.sh_
-	c. Paste the content from *step 2.c.* into _wsk_set_env_prod.sh_
-	d. Make sure _serverless-swift-talk/deploy/wsk_set_env_prod.sh_ is executable (`chmod +x serverless-swift-talk/deploy/wsk_set_env_prod.sh`)
+    1. If you haven't already done so clone this repo
+	2. Create a file in _serverless-swift-talk/deploy_ called _wsk_set_env_prod.sh_
+	3. Paste the content from *step 2.c.* into _wsk_set_env_prod.sh_
+	4. Make sure _serverless-swift-talk/deploy/wsk_set_env_prod.sh_ is executable (`chmod +x serverless-swift-talk/deploy/wsk_set_env_prod.sh`)
 
 ## Deploy the Hello World Function to OpenWhisk
 
