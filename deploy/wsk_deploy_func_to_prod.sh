@@ -13,7 +13,7 @@ absPath() {
 action=$1
 func_name=$2
 func_file_name=$3
-wsk_cmd=$(echo 'wsk action '$action' --kind swift:3')
+wsk_cmd=$(echo 'wsk action '$action' --kind swift:3 -t 180000')
 mkdir -p ./release/prod
 func_rel_file_name=$(echo $func_file_name | sed 's/.*\///')
 func_rel_file_name=$(echo $func_rel_file_name | sed 's/\.[^.]*$//')

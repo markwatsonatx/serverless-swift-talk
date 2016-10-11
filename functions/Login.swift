@@ -14,9 +14,12 @@ func main(args: [String:Any]) -> [String:Any] {
     if (emailAddress != nil && password != nil) {
         var response : [String:Any]?
         DispatchQueue.global().sync {
-            let selector = ["email_address" : emailAddress, "password": password]
-            let query = ["selector" : selector]
-            print("QUERY = \(query)")
+            let query = [
+                "selector" : [
+                    "email_address" : emailAddress,
+                    "password": password
+                ]
+            ]
             couchdbClient.findDocs(db: db, query: query) { (docs, error) in
                 if (error != nil || docs == nil || docs?.count != 1) {
                     response = ["error": "Invalid email address or password.", "docs": docs]

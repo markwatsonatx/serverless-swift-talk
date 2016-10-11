@@ -1,22 +1,25 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  ServerlessSwiftTalkClient
 //
-//  Created by Mark Watson on 9/29/16.
+//  Created by Mark Watson on 10/11/16.
 //  Copyright © 2016 IBM CDS Labs. All rights reserved.
 //
 
 import SwiftyJSON
 import UIKit
 
-class HelloWorldViewController: UIViewController {
+class LoginViewController: UIViewController {
     
-    private static let OPENWHISK_ENDPOINT = "https://openwhisk.ng.bluemix.net/api/v1/namespaces/markwats%40us.ibm.com_serverless-swift-talk/actions/HelloWorld?blocking=true"
-    private static let API_CONNECT_ENDPOINT = "https://api.us.apiconnect.ibmcloud.com/markwatsusibmcom-serverless-swift-talk/sb/api/helloworld"
+    private static let OPENWHISK_ENDPOINT = "https://openwhisk.ng.bluemix.net/api/v1/namespaces/markwats%40us.ibm.com_serverless-swift-talk/actions/Login?blocking=true"
+    private static let API_CONNECT_ENDPOINT = "https://api.us.apiconnect.ibmcloud.com/markwatsusibmcom-serverless-swift-talk/sb/api/login"
     
     @IBOutlet var openWhiskAuthHeaderTextField: UITextField!
-    @IBOutlet var openWhiskMessageTextField: UITextField!
-    @IBOutlet var apiConnectMessageTextField: UITextField!
+    @IBOutlet var openWhiskEmailAddressTextField: UITextField!
+    @IBOutlet var openWhiskPasswordTextField: UITextField!
+    @IBOutlet var apiConnectEmailAddressTextField: UITextField!
+    @IBOutlet var apiConnectPasswordTextField: UITextField!
+    
     var activityIndicator: UIActivityIndicatorView?
     
     override func viewDidLoad() {
@@ -30,7 +33,8 @@ class HelloWorldViewController: UIViewController {
     // MARK: OpenWhisk Endpoint
     
     @IBAction func openWhiskRunButtonPressed(sender: UIButton) {
-        let message = self.openWhiskMessageTextField.text
+        let emailAddress = self.openWhiskEmailAddressTextField.text
+        let password = self.openWhiskPasswordTextField.text
         let authHeader = self.openWhiskAuthHeaderTextField.text
         if (authHeader == nil) {
             return
@@ -38,15 +42,18 @@ class HelloWorldViewController: UIViewController {
         // save authHeader
         UserDefaults.standard.setValue(authHeader, forKey: AppDelegate.OPENWHISK_AUTH_HEADER_KEY)
         // call OpenWhisk
-        let url = URL(string: HelloWorldViewController.OPENWHISK_ENDPOINT)
+        let url = URL(string: LoginViewController.OPENWHISK_ENDPOINT)
         let session = URLSession.shared
         var request = URLRequest(url: url!)
         request.addValue(authHeader!, forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField:"Content-Type")
         request.addValue("application/json", forHTTPHeaderField:"Accepts")
         request.httpMethod = "POST"
-        if (message != nil) {
-            let json: JSON = ["message": message!]
+        if (emailAddress != nil && password != nil) {
+            let json: JSON = [
+                "email_address": emailAddress!,
+                "password": password!
+            ]
             do {
                 request.httpBody = try json.rawData()
             }
@@ -64,8 +71,9 @@ class HelloWorldViewController: UIViewController {
                     return
                 }
                 let json = JSON(data: data!)
-                if let reply = json["response"]["result"]["reply"].string {
-                    self.showResponse(message: reply)
+                if let reply = json["response"]["result"]["jwt"].string {
+                    AppDelegate.jwt = reply
+                    self.showResponse(message: "\(reply)")
                 }
             }
         });
@@ -75,34 +83,46 @@ class HelloWorldViewController: UIViewController {
     // MARK: API Connect Endpoint
     
     @IBAction func apiConnectRunButtonPressed(sender: UIButton) {
-        var endpoint = HelloWorldViewController.API_CONNECT_ENDPOINT
-        let message = self.apiConnectMessageTextField.text
-        if (message != nil) {
-            endpoint = "\(endpoint)?message=\(message!.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)"
-        }
-        let url = URL(string: endpoint)
+        let emailAddress = self.apiConnectEmailAddressTextField.text
+        let password = self.apiConnectPasswordTextField.text
+        // call API Connect
+        let url = URL(string: LoginViewController.API_CONNECT_ENDPOINT)
         let session = URLSession.shared
         var request = URLRequest(url: url!)
+        request.addValue("application/json", forHTTPHeaderField:"Content-Type")
         request.addValue("application/json", forHTTPHeaderField:"Accepts")
-        request.httpMethod = "GET"
+        request.httpMethod = "POST"
+        if (emailAddress != nil && password != nil) {
+            let json: JSON = [
+                "email_address": emailAddress!,
+                "password": password!
+            ]
+            do {
+                request.httpBody = try json.rawData()
+            }
+            catch {
+                print("Error serializing JSON: \(error)")
+            }
+        }
         //
         self.waitingForResponse()
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
             DispatchQueue.main.async {
                 self.doneWaitingForResponse()
                 guard let _:Data = data, let _:URLResponse = response, error == nil else {
-                    print("Error connecting to API Connect: \(error)")
+                    print("Error connecting to OpenWhisk: \(error)")
                     return
                 }
                 let json = JSON(data: data!)
-                if let reply = json["reply"].string {
-                    self.showResponse(message: reply)
+                if let reply = json["jwt"].string {
+                    AppDelegate.jwt = reply
+                    self.showResponse(message: "\(reply)")
                 }
             }
         });
         task.resume()
     }
-
+    
     // MARK: Helper Functions
     
     func waitingForResponse() {
@@ -127,5 +147,5 @@ class HelloWorldViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
-
+    
 }

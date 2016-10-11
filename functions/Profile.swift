@@ -17,8 +17,11 @@ func main(args: [String:Any]) -> [String:Any] {
             let payload = try Decode().decode(jwt!, algorithm: .hs256(jwtSecret.data(using: .utf8)!))
             let userId = payload["id"]
             DispatchQueue.global().sync {
-                let selector = ["_id": userId]
-                let query = ["selector": selector]
+                let query = [
+                    "selector": [
+                        "_id": userId
+                    ]
+                ]
                 couchdbClient.findDocs(db: db, query: query) { (docs, error) in
                     if (error != nil || docs == nil || docs?.count != 1) {
                         response = ["error" : "User not found."]

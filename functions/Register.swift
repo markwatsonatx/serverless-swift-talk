@@ -15,7 +15,12 @@ func main(args: [String:Any]) -> [String:Any] {
                 response = ["error": "Error creating database."]
             }
             else {
-                let doc = ["email_address": args["email_address"], "password": args["password"], "first_name": args["first_name"], "last_name":  args["last_name"]]
+                let doc = [
+                    "email_address": args["email_address"],
+                    "password": args["password"],
+                    "first_name": args["first_name"],
+                    "last_name":  args["last_name"]
+                ]
                 couchdbClient.createDoc(db: db, doc: doc) { (saveDocResponse, error) in
                     if (error != nil || saveDocResponse == nil) {
                        response = ["error": "Error registering user."]

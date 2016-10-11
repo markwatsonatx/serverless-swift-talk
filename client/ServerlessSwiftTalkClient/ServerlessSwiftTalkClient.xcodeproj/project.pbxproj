@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		692240310B014EDDBE5053B6 /* Pods_ServerlessSwiftTalkClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7C323EAF6ECD5E79692104 /* Pods_ServerlessSwiftTalkClient.framework */; };
+		D740AFC51DAD4D7500757BE3 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740AFC41DAD4D7500757BE3 /* RegisterViewController.swift */; };
+		D740AFC81DAD5F4D00757BE3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740AFC71DAD5F4D00757BE3 /* LoginViewController.swift */; };
+		D740AFCA1DAD619B00757BE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740AFC91DAD619B00757BE3 /* ProfileViewController.swift */; };
 		D77B82191D9D93B000A068DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77B82181D9D93B000A068DF /* AppDelegate.swift */; };
 		D77B821B1D9D93B000A068DF /* HelloWorldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77B821A1D9D93B000A068DF /* HelloWorldViewController.swift */; };
 		D77B821E1D9D93B000A068DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D77B821C1D9D93B000A068DF /* Main.storyboard */; };
 		D77B82201D9D93B000A068DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D77B821F1D9D93B000A068DF /* Assets.xcassets */; };
 		D77B82231D9D93B000A068DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D77B82211D9D93B000A068DF /* LaunchScreen.storyboard */; };
-		D77B82471D9D9D7800A068DF /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77B82461D9D9D7800A068DF /* AppState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +32,9 @@
 		15A2B9E61327C37E2D9D68A9 /* Pods-ServerlessSwiftTalkClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServerlessSwiftTalkClient.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ServerlessSwiftTalkClient/Pods-ServerlessSwiftTalkClient.release.xcconfig"; sourceTree = "<group>"; };
 		920ACE24CDA600DB74842FF8 /* Pods-ServerlessSwiftTalkClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServerlessSwiftTalkClient.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ServerlessSwiftTalkClient/Pods-ServerlessSwiftTalkClient.debug.xcconfig"; sourceTree = "<group>"; };
 		CE7C323EAF6ECD5E79692104 /* Pods_ServerlessSwiftTalkClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServerlessSwiftTalkClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D740AFC41DAD4D7500757BE3 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		D740AFC71DAD5F4D00757BE3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D740AFC91DAD619B00757BE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D752672E1D9DA32B00C5CDB3 /* ServerlessSwiftTalkClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServerlessSwiftTalkClient.entitlements; sourceTree = "<group>"; };
 		D77B82151D9D93B000A068DF /* ServerlessSwiftTalkClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServerlessSwiftTalkClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D77B82181D9D93B000A068DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -39,7 +44,6 @@
 		D77B82221D9D93B000A068DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D77B82241D9D93B000A068DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D77B82291D9D93B000A068DF /* ServerlessSwiftTalkClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ServerlessSwiftTalkClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D77B82461D9D9D7800A068DF /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,11 +82,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D75267311D9DA77E00C5CDB3 /* Model */ = {
+		D740AFC61DAD4D8400757BE3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D77B821A1D9D93B000A068DF /* HelloWorldViewController.swift */,
+				D740AFC41DAD4D7500757BE3 /* RegisterViewController.swift */,
+				D740AFC71DAD5F4D00757BE3 /* LoginViewController.swift */,
+				D740AFC91DAD619B00757BE3 /* ProfileViewController.swift */,
 			);
-			name = Model;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		D77B820C1D9D93B000A068DF = {
@@ -107,11 +115,9 @@
 		D77B82171D9D93B000A068DF /* ServerlessSwiftTalkClient */ = {
 			isa = PBXGroup;
 			children = (
-				D75267311D9DA77E00C5CDB3 /* Model */,
+				D740AFC61DAD4D8400757BE3 /* View Controllers */,
 				D752672E1D9DA32B00C5CDB3 /* ServerlessSwiftTalkClient.entitlements */,
-				D77B82461D9D9D7800A068DF /* AppState.swift */,
 				D77B82181D9D93B000A068DF /* AppDelegate.swift */,
-				D77B821A1D9D93B000A068DF /* HelloWorldViewController.swift */,
 				D77B821C1D9D93B000A068DF /* Main.storyboard */,
 				D77B821F1D9D93B000A068DF /* Assets.xcassets */,
 				D77B82211D9D93B000A068DF /* LaunchScreen.storyboard */,
@@ -281,9 +287,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D740AFCA1DAD619B00757BE3 /* ProfileViewController.swift in Sources */,
+				D740AFC81DAD5F4D00757BE3 /* LoginViewController.swift in Sources */,
+				D740AFC51DAD4D7500757BE3 /* RegisterViewController.swift in Sources */,
 				D77B821B1D9D93B000A068DF /* HelloWorldViewController.swift in Sources */,
 				D77B82191D9D93B000A068DF /* AppDelegate.swift in Sources */,
-				D77B82471D9D9D7800A068DF /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
