@@ -11,6 +11,7 @@
 		D740AFC51DAD4D7500757BE3 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740AFC41DAD4D7500757BE3 /* RegisterViewController.swift */; };
 		D740AFC81DAD5F4D00757BE3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740AFC71DAD5F4D00757BE3 /* LoginViewController.swift */; };
 		D740AFCA1DAD619B00757BE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740AFC91DAD619B00757BE3 /* ProfileViewController.swift */; };
+		D740AFCF1DB11DFD00757BE3 /* LoginGitHubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740AFCE1DB11DFD00757BE3 /* LoginGitHubViewController.swift */; };
 		D77B82191D9D93B000A068DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77B82181D9D93B000A068DF /* AppDelegate.swift */; };
 		D77B821B1D9D93B000A068DF /* HelloWorldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77B821A1D9D93B000A068DF /* HelloWorldViewController.swift */; };
 		D77B821E1D9D93B000A068DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D77B821C1D9D93B000A068DF /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		D740AFC41DAD4D7500757BE3 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D740AFC71DAD5F4D00757BE3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D740AFC91DAD619B00757BE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D740AFCE1DB11DFD00757BE3 /* LoginGitHubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginGitHubViewController.swift; sourceTree = "<group>"; };
 		D77B82151D9D93B000A068DF /* ServerlessSwiftTalkClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServerlessSwiftTalkClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D77B82181D9D93B000A068DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D77B821A1D9D93B000A068DF /* HelloWorldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloWorldViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				D77B821A1D9D93B000A068DF /* HelloWorldViewController.swift */,
 				D740AFC41DAD4D7500757BE3 /* RegisterViewController.swift */,
 				D740AFC71DAD5F4D00757BE3 /* LoginViewController.swift */,
+				D740AFCE1DB11DFD00757BE3 /* LoginGitHubViewController.swift */,
 				D740AFC91DAD619B00757BE3 /* ProfileViewController.swift */,
 			);
 			name = "View Controllers";
@@ -290,6 +293,7 @@
 				D740AFC51DAD4D7500757BE3 /* RegisterViewController.swift in Sources */,
 				D77B821B1D9D93B000A068DF /* HelloWorldViewController.swift in Sources */,
 				D77B82191D9D93B000A068DF /* AppDelegate.swift in Sources */,
+				D740AFCF1DB11DFD00757BE3 /* LoginGitHubViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

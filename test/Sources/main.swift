@@ -18,7 +18,9 @@
 
 import Foundation
 
+import HeliumLogger
 import Kitura
+import LoggerAPI
 import SwiftyJSON
 
 #if os(Linux)
@@ -27,6 +29,9 @@ import SwiftyJSON
 
 // All Web apps need a router to define routes
 let router = Router()
+
+// Using an implementation for a Logger
+Log.logger = HeliumLogger()
 
 /**
 * RouterMiddleware can be used for intercepting requests and handling custom behavior
@@ -47,6 +52,7 @@ router.all(middleware: BasicAuthMiddleware())
 
 router.all("/static", middleware: StaticFileServer())
 
+// Simulate OpenWhisk functions
 router.post("/function/:function") { request, response, next in
     let f = request.parameters["function"]!
     do {
@@ -56,6 +62,28 @@ router.post("/function/:function") { request, response, next in
 		let funcRespJsonObj = JSON(funcResp)
 		response.headers["Content-Type"] = "application/json"
 		try response.send(data: funcRespJsonObj.rawData()).end()
+	}
+	catch {
+        print("Failed to send response \(error)")
+    }
+}
+
+// Simulate API Connect endpoints
+
+router.get("/login-github") { request, response, next in
+    do {
+        var funcRespJsonObj: JSON?
+		let f = "LoginGitHub"
+        let code = request.queryParameters["code"]
+        if (code != nil) {
+            let funcResp = FunctionRunner.run(function: f, args:["code": code!])
+		    funcRespJsonObj = JSON(funcResp)
+        }
+        else {
+            funcRespJsonObj = JSON(["error": "Invalid code"])
+        }
+        response.headers["Content-Type"] = "application/json"
+		try response.send(data: funcRespJsonObj!.rawData()).end()
 	}
 	catch {
         print("Failed to send response \(error)")
