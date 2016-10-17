@@ -47,9 +47,17 @@ class LoginGitHubViewController: UIViewController, UIWebViewDelegate {
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        print("webViewDidFinishLoad: \(webView.stringByEvaluatingJavaScript(from: "document.body.innerHTML"))")
+        print("webViewDidFinishLoad")
         self.doneWaitingForResponse()
-        // mw:TODO: parse response and set AppDelegate.jwt
+        let content = webView.stringByEvaluatingJavaScript(from: "document.body.innerText")
+        if (content?.range(of: "jwt") != nil) {
+            let json = JSON(data: content!.data(using: .utf8)!)
+            if let jwt = json["jwt"].string {
+                AppDelegate.jwt = jwt
+                self.dismiss(animated: true) {
+                }
+            }
+        }
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {

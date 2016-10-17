@@ -1,11 +1,15 @@
 import Dispatch
 import Foundation
 import KituraNet
+import LoggerAPI
 import SwiftyJSON
 
 // $DefaultParam:jwt_secret
 
 func main(args: [String:Any]) -> [String:Any] {
+    if (args["keep_alive"] as? Bool == true) {
+        return ["keep_alive": "true"]
+    }
     let jwt = args["jwt"] as? String
     if (jwt != nil) {
         let jwtSecret = args["jwt_secret"] as! String
@@ -14,11 +18,8 @@ func main(args: [String:Any]) -> [String:Any] {
             let payload = try Decode().decode(jwt!, algorithm: .hs256(jwtSecret.data(using: .utf8)!))
             let accessToken = payload["access_token"]
             DispatchQueue.global().sync {
-                var headers = ["User-Agent": "serverless-swift-talk",
-                               "Content-Type": "application/json",
-                               "Accepts": "application/json"]
                 var options: [ClientRequest.Options] = []
-                options.append(.headers(headers)) // User-Agent required by GitHub
+                options.append(.headers(["User-Agent": "serverless-swift-talk"])) // User-Agent required by GitHub
                 options.append(.schema("https://"))
                 options.append(.hostname("api.github.com"))
                 options.append(.path("/user?access_token=\(accessToken!)"))
@@ -28,9 +29,23 @@ func main(args: [String:Any]) -> [String:Any] {
                         do {
                             let str = try res!.readString()!
                             if (str.characters.count > 0) {
-                                response = try JSONSerialization.jsonObject(with:str.data(using:.utf8)!, options:[]) as? [String:Any]
-                                if (response == nil) {
-                                    response = ["str": str]
+                                let json = JSON(data:str.data(using:.utf8)!)
+                                if let dict = json.dictionaryObject {
+                                    response = [String:Any]()
+                                    for (key, value) in dict {
+                                        if (key != "site_admin") {
+                                            response!.updateValue(value, forKey: key)
+                                        }
+//                                        if (value is NSNull == false) {
+//                                            let valueStr = value as? String
+//                                            if (valueStr == nil || (valueStr!.characters.count > 0 && valueStr?.range(of: ",") == nil && valueStr?.range(of: "http") == nil && valueStr?.range(of: "2014") == nil && valueStr?.range(of: "2016") == nil)) {
+//                                                response!.updateValue(value, forKey: key)
+//                                            }
+//                                        }
+                                    }
+                                }
+                                else {
+                                    response = ["error": "Invalid response"]
                                 }
                             }
                             else {

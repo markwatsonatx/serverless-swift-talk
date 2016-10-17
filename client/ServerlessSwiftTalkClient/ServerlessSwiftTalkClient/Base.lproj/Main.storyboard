@@ -542,7 +542,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Run API Connect"/>
                                 <connections>
-                                    <action selector="gitHubApiConnectRunButtonPressedWithSender:" destination="WSt-9c-FVX" eventType="touchUpOutside" id="n52-mq-eee"/>
+                                    <action selector="gitHubApiConnectRunButtonPressedWithSender:" destination="WSt-9c-FVX" eventType="touchUpInside" id="c57-X1-hxw"/>
                                     <action selector="openWhiskRunButtonPressedWithSender:" destination="DGr-xt-Upc" eventType="touchUpInside" id="PgM-ve-xeQ"/>
                                 </connections>
                             </button>
