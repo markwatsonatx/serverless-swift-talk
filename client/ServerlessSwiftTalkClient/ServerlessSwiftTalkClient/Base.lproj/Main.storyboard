@@ -198,7 +198,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Register" id="O00-UQ-KuK"/>
+                    <tabBarItem key="tabBarItem" title="Register" image="Tab" id="O00-UQ-KuK"/>
                     <connections>
                         <outlet property="apiConnectEmailAddressTextField" destination="kqw-tO-dSR" id="wow-5Z-dK0"/>
                         <outlet property="apiConnectFirstNameTextField" destination="8KB-ny-ec3" id="6c1-nB-Ed8"/>
@@ -364,7 +364,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Login" id="wJk-Yv-8U5"/>
+                    <tabBarItem key="tabBarItem" title="Login" image="Tab" id="wJk-Yv-8U5"/>
                     <connections>
                         <outlet property="apiConnectEmailAddressTextField" destination="45n-qr-WVe" id="lUf-bd-A9O"/>
                         <outlet property="apiConnectPasswordTextField" destination="ra9-tq-rHp" id="suJ-pC-Bxa"/>
@@ -549,7 +549,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="fJD-fT-g7v"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="Tab" id="fJD-fT-g7v"/>
                     <connections>
                         <outlet property="gitHubOpenWhiskAuthHeaderTextField" destination="A9f-SG-igM" id="Uks-ab-eA0"/>
                         <outlet property="openWhiskAuthHeaderTextField" destination="7az-at-16e" id="Dsr-nC-QXT"/>
@@ -665,7 +665,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Hello World" id="XSk-tB-Aav"/>
+                    <tabBarItem key="tabBarItem" title="Hello World" image="Tab" id="XSk-tB-Aav"/>
                     <connections>
                         <outlet property="apiConnectMessageTextField" destination="mWc-AA-pvN" id="wo9-aX-BFP"/>
                         <outlet property="openWhiskAuthHeaderTextField" destination="gED-hi-6x1" id="iJa-bH-7nO"/>
@@ -697,4 +697,7 @@
             <point key="canvasLocation" x="-2919" y="36"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Tab" width="25" height="25"/>
+    </resources>
 </document>
